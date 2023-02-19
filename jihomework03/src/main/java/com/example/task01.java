@@ -1,7 +1,6 @@
 package com.example;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -12,7 +11,7 @@ import java.util.Random;
 public class task01 {
     public static void main(String[] args) {
         List<Integer> arl = new ArrayList<Integer>();
-        intListRandomFilling(arl, 10); // List rnd Creating
+        intListRandomFilling(arl, 20); // List rnd Creating
         System.out.println(arl);
         arl = mergeSorting(arl);
         System.out.println(arl);
@@ -26,7 +25,6 @@ public class task01 {
         List<Integer> arrSubLeft = new ArrayList<>(arr.subList(0, midIndex));
         List<Integer> arrSubRight = new ArrayList<>(arr.subList(midIndex, arr.size()));
         arrSubLeft = mergeSorting(arrSubLeft);
-
         arrSubRight = mergeSorting(arrSubRight);
         arrMerge(arr, arrSubLeft, arrSubRight);
         return arr;
@@ -41,8 +39,9 @@ public class task01 {
 
         while (leftArrIndex < arrLeft.size() && rightArrIndex < arrRight.size()) {
             /*
-             * Проходим по подмассивам до тех пор, пока элементы из один из них не будут полностью
-             * перенесены в основной массив 
+             * Проходим по подмассивам до тех пор, пока элементы из один из них не будут
+             * полностью
+             * перенесены в основной массив
              */
             if (arrLeft.get(leftArrIndex) < arrRight.get(rightArrIndex)) {
                 /*
@@ -58,17 +57,16 @@ public class task01 {
         }
         if (leftArrIndex < arrLeft.size()) {
             /*
-             * Когда один из подмассивов закончился, элементы, которые остались не перенесёнными
-             * (из второго подмассива) полностью переносятся в конец основного массива 
+             * Когда один из подмассивов закончился, элементы, которые остались не
+             * перенесёнными
+             * (из второго подмассива) полностью переносятся в конец основного массива
              */
             for (int i = leftArrIndex; i < arrLeft.size(); i++) {
-                arrMain.set(leftArrIndex + rightArrIndex, arrLeft.get(i));
-                leftArrIndex++;
+                arrMain.set(i + rightArrIndex, arrLeft.get(i));
             }
         } else {
             for (int i = rightArrIndex; i < arrRight.size(); i++) {
-                arrMain.set(leftArrIndex + rightArrIndex, arrRight.get(i));
-                leftArrIndex++;
+                arrMain.set(leftArrIndex + i, arrRight.get(i));
             }
         }
     }
